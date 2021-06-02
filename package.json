@@ -1,0 +1,16 @@
+{
+  "name": "check-my-package-version",
+  "version": "1.0.0",
+  "repository": "git@github.com:megatroom/check-my-package-version.git",
+  "license": "MIT",
+  "devDependencies": {
+    "auto": "^10.29.2"
+  },
+  "author": "Bruno Nardini <megatroom3@gmail.com>",
+  "auto": {
+    "plugins": [
+      "npm",
+      "first-time-contributor"
+    ]
+  }
+}
