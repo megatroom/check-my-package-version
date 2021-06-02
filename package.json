@@ -1,0 +1,82 @@
+{
+  "name": "check-my-package-version",
+  "version": "1.0.0",
+  "repository": "git@github.com:megatroom/check-my-package-version.git",
+  "license": "MIT",
+  "devDependencies": {
+    "@auto-it/first-time-contributor": "^10.29.2",
+    "auto": "^10.29.2"
+  },
+  "author": "Bruno Nardini <megatroom3@gmail.com>",
+  "auto": {
+    "plugins": [
+      "npm",
+      "first-time-contributor"
+    ],
+    "labels": [
+      {
+        "name": "version:major",
+        "changelogTitle": "💥 Breaking Change",
+        "description": "Increment the major version",
+        "releaseType": "major",
+        "color": "#C5000B",
+        "overwrite": true
+      },
+      {
+        "name": "version:minor",
+        "changelogTitle": "🚀 Enhancement",
+        "description": "Increment the minor version",
+        "releaseType": "minor",
+        "color": "#F1A60E",
+        "overwrite": true
+      },
+      {
+        "name": "version:patch",
+        "changelogTitle": "🐛 Bug Fix",
+        "description": "Increment the patch version",
+        "releaseType": "patch",
+        "color": "#870048",
+        "overwrite": true
+      },
+      {
+        "name": "version:performance",
+        "changelogTitle": "🏎 Performance",
+        "description": "Improve performance of an existing feature",
+        "releaseType": "patch",
+        "color": "#f4b2d8",
+        "overwrite": true
+      },
+      {
+        "name": "version:internal",
+        "changelogTitle": "🏠 Internal",
+        "description": "Changes only affect the internal API",
+        "releaseType": "none",
+        "color": "#696969",
+        "overwrite": true
+      },
+      {
+        "name": "version:docs",
+        "changelogTitle": "📝 Documentation",
+        "description": "Changes only affect the documentation",
+        "releaseType": "none",
+        "color": "#cfd3d7",
+        "overwrite": true
+      },
+      {
+        "name": "version:dependencies",
+        "changelogTitle": "🔩 Dependency Updates",
+        "description": "Update one or more dependencies version",
+        "releaseType": "none",
+        "color": "#8732bc",
+        "overwrite": true
+      },
+      {
+        "name": "version:skip-release",
+        "description": "Preserve the current version",
+        "releaseType": "skip",
+        "color": "#bf5416",
+        "overwrite": true
+      }
+    ]
+  }
+}
