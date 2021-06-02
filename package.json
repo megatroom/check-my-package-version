@@ -1,11 +1,20 @@
 {
   "name": "check-my-package-version",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "repository": "git@github.com:megatroom/check-my-package-version.git",
   "license": "MIT",
+  "main": "dist/index.js",
+  "scripts": {
+    "lint": "prettier --check ./src",
+    "build": "rollup -c"
+  },
+  "dependencies": {},
   "devDependencies": {
     "@auto-it/first-time-contributor": "^10.29.2",
-    "auto": "^10.29.2"
+    "auto": "^10.29.2",
+    "prettier": "^2.3.0",
+    "rollup": "^2.50.5",
+    "rollup-plugin-terser": "^7.0.2"
   },
   "author": "Bruno Nardini <megatroom3@gmail.com>",
   "auto": {

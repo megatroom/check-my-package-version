@@ -4,7 +4,6 @@ orbs:
   # See the orb documentation here: https://circleci.com/developer/orbs/orb/circleci/node
   node: circleci/node@4.1
 
-
 jobs:
   build-and-test:
     docker:
@@ -12,10 +11,13 @@ jobs:
     steps:
       - checkout
       - node/install-packages:
-          pkg-manager: yarn 
+          pkg-manager: yarn
       - run:
           name: Auto check PR
           command: yarn auto pr-check --url $CIRCLE_BUILD_URL
+      - run:
+          name: Lint check
+          command: yarn lint
 
 workflows:
   build-test-deploy:
