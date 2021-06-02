@@ -39,17 +39,11 @@
         "overwrite": true
       },
       {
-        "name": "version:skip-release",
-        "description": "Preserve the current version",
-        "releaseType": "skip",
-        "color": "#bf5416",
-        "overwrite": true
-      },
-      {
-        "name": "version:release",
-        "description": "Create a release when this pr is merged",
-        "releaseType": "release",
-        "color": "#007f70",
+        "name": "version:performance",
+        "changelogTitle": "🏎 Performance",
+        "description": "Improve performance of an existing feature",
+        "releaseType": "patch",
+        "color": "#f4b2d8",
         "overwrite": true
       },
       {
@@ -69,27 +63,11 @@
         "overwrite": true
       },
       {
-        "name": "version:tests",
-        "changelogTitle": "🧪 Tests",
-        "description": "Add or improve existing tests",
-        "releaseType": "none",
-        "color": "#ffd3cc",
-        "overwrite": true
-      },
-      {
         "name": "version:dependencies",
         "changelogTitle": "🔩 Dependency Updates",
         "description": "Update one or more dependencies version",
         "releaseType": "none",
         "color": "#8732bc",
-        "overwrite": true
-      },
-      {
-        "name": "version:performance",
-        "changelogTitle": "🏎 Performance",
-        "description": "Improve performance of an existing feature",
-        "releaseType": "patch",
-        "color": "#f4b2d8",
         "overwrite": true
       }
     ]
