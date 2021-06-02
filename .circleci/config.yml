@@ -1,0 +1,23 @@
+version: 2.1
+
+orbs:
+  # See the orb documentation here: https://circleci.com/developer/orbs/orb/circleci/node
+  node: circleci/node@4.1
+
+
+jobs:
+  build-and-test:
+    docker:
+      - image: cimg/node:15.1
+    steps:
+      - checkout
+      - node/install-packages:
+          pkg-manager: yarn 
+      - run:
+          name: Auto check PR
+          command: yarn auto pr-check --url $CIRCLE_BUILD_URL
+
+workflows:
+  build-test-deploy:
+    jobs:
+      - build-and-test
