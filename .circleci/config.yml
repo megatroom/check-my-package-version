@@ -14,8 +14,8 @@ jobs:
       - node/install-packages:
           pkg-manager: yarn 
       - run:
-          name: Check Auto config
-          command: yarn auto info
+          name: Auto check PR
+          command: yarn auto pr-check
 
 workflows:
   build-test-deploy:
