@@ -69,6 +69,13 @@
         "releaseType": "none",
         "color": "#8732bc",
         "overwrite": true
+      },
+      {
+        "name": "version:skip-release",
+        "description": "Preserve the current version",
+        "releaseType": "skip",
+        "color": "#bf5416",
+        "overwrite": true
       }
     ]
   }
