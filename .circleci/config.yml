@@ -51,6 +51,9 @@ jobs:
       - checkout
       - *current_workspace
       - run:
+          name: Authenticate with NPM
+          command: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc
+      - run:
           name: Bump version
           command: yarn version --prerelease --preid next -m "[skip ci] Bump version to %s"
       - run:
