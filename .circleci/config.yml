@@ -88,24 +88,24 @@ workflows:
                 - latest
           requires:
             - build-and-test
-      - publish-canary:
-          filters:
-            branches:
-              ignore:
-                - main
-                - latest
-          requires:
-            - build-and-test
-            - check-pr
-      - publish-next:
-          filters:
-            branches:
-              only: main
-          requires:
-            - build-and-test
-      - publish-latest:
-          filters:
-            branches:
-              only: latest
-          requires:
-            - build-and-test
+      # - publish-canary:
+      #     filters:
+      #       branches:
+      #         ignore:
+      #           - main
+      #           - latest
+      #     requires:
+      #       - build-and-test
+      #       - check-pr
+      # - publish-next:
+      #     filters:
+      #       branches:
+      #         only: main
+      #     requires:
+      #       - build-and-test
+      # - publish-latest:
+      #     filters:
+      #       branches:
+      #         only: latest
+      #     requires:
+      #       - build-and-test
