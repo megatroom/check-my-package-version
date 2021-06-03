@@ -51,11 +51,14 @@ jobs:
       - checkout
       - *current_workspace
       - run:
-          name: Bump version locally
-          command: yarn version --prerelease --no-git-tag-version --preid next
+          name: Bump version
+          command: yarn version --prerelease --preid next -m "[skip ci] Bump version to %s"
       - run:
           name: Publish next version
           command: npm publish --tag next
+      - run:
+          name: Push commit and tag
+          command: git push --follow-tags --set-upstream origin main
   publish-latest:
     docker: *circleci_node
     steps:
