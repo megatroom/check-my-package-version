@@ -59,21 +59,14 @@ jobs:
           name: Authenticate with NPM
           command: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc
       - run:
-          name: Print data
-          command: |
-            echo "${CIRCLE_PROJECT_REPONAME}" && \
-            echo "${CIRCLE_PROJECT_USERNAME}" && \
-            echo "${CIRCLE_USERNAME}" && \
-            echo "${CIRCLE_BRANCH}"
-      # - run:
-      #     name: Bump version
-      #     command: yarn version --prerelease --preid next -m "[skip ci] Bump version to %s"
-      # - run:
-      #     name: Publish next version
-      #     command: npm publish --tag next
-      # - run:
-      #     name: Push commit and tag
-      #     command: git push --follow-tags -q https://${GH_TOKEN}@github.com/<user>/<repo>.git ${CIRCLE_BRANCH}
+          name: Bump version
+          command: yarn version --prerelease --preid next -m "[skip ci] Bump version to %s"
+      - run:
+          name: Publish next version
+          command: npm publish --tag next
+      - run:
+          name: Push commit and tag
+          command: git push --follow-tags -q https://${GH_TOKEN}@github.com/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}.git ${CIRCLE_BRANCH}
   publish-latest:
     docker: *circleci_node
     steps:
