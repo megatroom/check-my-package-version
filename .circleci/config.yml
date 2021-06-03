@@ -4,22 +4,100 @@ orbs:
   # See the orb documentation here: https://circleci.com/developer/orbs/orb/circleci/node
   node: circleci/node@4.1
 
+aliases:
+  - &circleci_node
+    - image: cimg/node:15.1
+
+  - &current_workspace
+    attach_workspace: { at: "." }
+
 jobs:
   build-and-test:
-    docker:
-      - image: cimg/node:15.1
+    docker: *circleci_node
     steps:
       - checkout
       - node/install-packages:
           pkg-manager: yarn
       - run:
-          name: Auto check PR
-          command: yarn auto pr-check --url $CIRCLE_BUILD_URL
-      - run:
           name: Lint check
           command: yarn lint
+      - run:
+          name: Build lib
+          command: yarn build
+      - persist_to_workspace:
+          root: "."
+          paths:
+            - "dist/*"
+            - "node_modules/*"
+  check-pr:
+    docker: *circleci_node
+    steps:
+      - checkout
+      - *current_workspace
+      - run:
+          name: Auto check PR
+          command: yarn auto pr-check --url $CIRCLE_BUILD_URL
+  publish-canary:
+    docker: *circleci_node
+    steps:
+      - checkout
+      - *current_workspace
+      - run:
+          name: Publish canary version
+          command: yarn auto canary
+  publish-next:
+    docker: *circleci_node
+    steps:
+      - checkout
+      - *current_workspace
+      - run:
+          name: Bump version
+          command: yarn version --prerelease --preid next -m "[skip ci] Bump version to %s"
+      - run:
+          name: Publish next version
+          command: npm publish --tag next
+      - run:
+          name: Push commit and tag
+          command: git push --follow-tags --set-upstream origin main
+  publish-latest:
+    docker: *circleci_node
+    steps:
+      - checkout
+      - *current_workspace
+      - run:
+          name: Publish latest version
+          command: yarn auto latest
 
 workflows:
   build-test-deploy:
     jobs:
       - build-and-test
+      - check-pr:
+          filters:
+            branches:
+              ignore:
+                - main
+                - latest
+          requires:
+            - build-and-test
+      - publish-canary:
+          filters:
+            branches:
+              ignore:
+                - main
+                - latest
+          requires:
+            - build-and-test
+            - check-pr
+      - publish-next:
+          filters:
+            branches:
+              only: main
+          requires:
+            - build-and-test
+      - publish-latest:
+          filters:
+            branches:
+              only: latest
+          requires:
+            - build-and-test
