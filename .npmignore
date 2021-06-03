@@ -1,0 +1,11 @@
+# run "npx npm-packlist" to list files to be packed
+
+.vscode/
+.circleci/
+
+.env
+.editorconfig
+
+src/
+
+rollup.config.js
