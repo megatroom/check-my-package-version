@@ -1,6 +1,6 @@
 # Check My Package Version
 
-[![megatroom](https://circleci.com/gh/megatroomcheck-my-package-version.svg?style=svg)](<LINK>)
+[![megatroom](https://circleci.com/gh/megatroom/check-my-package-version.svg?style=svg)](https://circleci.com/gh/megatroom/check-my-package-version)
 
 Script to check package version against branches
 
