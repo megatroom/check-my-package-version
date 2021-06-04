@@ -1,3 +1,19 @@
+# v1.1.0 (Fri Jun 04 2021)
+
+#### 🚀 Enhancement
+
+- Add commander [#10](https://github.com/megatroom/check-my-package-version/pull/10) ([@megatroom](https://github.com/megatroom))
+
+#### 📝 Documentation
+
+- Add NPM badge to README [#9](https://github.com/megatroom/check-my-package-version/pull/9) ([@megatroom](https://github.com/megatroom))
+
+#### Authors: 1
+
+- Bruno Nardini ([@megatroom](https://github.com/megatroom))
+
+---
+
 # v1.0.0 (Fri Jun 04 2021)
 
 :tada: This release contains work from a new contributor! :tada:
