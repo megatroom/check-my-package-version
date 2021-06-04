@@ -18,6 +18,10 @@
   },
   "author": "Bruno Nardini <megatroom3@gmail.com>",
   "auto": {
+    "baseBranch": "main",
+    "prereleaseBranches": [
+      "next"
+    ],
     "plugins": [
       "npm",
       "first-time-contributor"
