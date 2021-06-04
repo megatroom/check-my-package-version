@@ -6,15 +6,23 @@
   "main": "dist/index.js",
   "scripts": {
     "lint": "prettier --check ./src",
-    "build": "rollup -c"
+    "start": "node src/index.js",
+    "build": "webpack"
   },
-  "dependencies": {},
+  "dependencies": {
+    "commander": "^7.2.0"
+  },
   "devDependencies": {
     "@auto-it/first-time-contributor": "^10.29.2",
+    "@babel/core": "^7.14.3",
+    "@babel/preset-env": "^7.14.4",
     "auto": "^10.29.2",
+    "babel-loader": "^8.2.2",
+    "clean-webpack-plugin": "^4.0.0-alpha.0",
     "prettier": "^2.3.0",
-    "rollup": "^2.50.5",
-    "rollup-plugin-terser": "^7.0.2"
+    "webpack": "^5.38.1",
+    "webpack-cli": "^4.7.0",
+    "webpack-node-externals": "^3.0.0"
   },
   "author": "Bruno Nardini <megatroom3@gmail.com>",
   "auto": {

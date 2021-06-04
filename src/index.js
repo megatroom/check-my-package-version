@@ -1,61 +1,28 @@
-const https = require("https");
 const fs = require("fs");
+const path = require("path");
+const { Command } = require("commander");
+const command = require("./command");
 
-const currentPackage = fs.readFileSync("./package.json");
-const currentVersion = JSON.parse(currentPackage).version;
-
-const myArgs = process.argv.slice(2);
-const org = myArgs[0];
-const repo = myArgs[1];
-const branch = myArgs[2] || "main";
-const versionURL = `https://raw.githubusercontent.com/${org}/${repo}/${branch}/package.json`;
-
-function splitVersion(version) {
-  return version.split(".").map((v) => parseInt(v, 10));
-}
-
-function throwProcessError(message) {
-  console.error("Error: " + message);
-  process.exit(1);
-}
-
-function compareVersions(orig, curr) {
-  const version1 = splitVersion(orig);
-  const version2 = splitVersion(curr);
-
-  for (let i = 0; i < version1.length; i += 1) {
-    if (version1[i] > version2[i]) {
-      throwProcessError(
-        `Current version (${curr}) is smaller than the version of ${branch} (${orig}).`
-      );
-    } else if (version2[i] > version1[i]) {
-      console.log(`Version checked: ${curr}`);
-      return true;
-    }
-  }
-
-  throwProcessError(
-    `Current version (${curr}) is the same as ${branch} (${orig}).`
+let libPackage;
+try {
+  libPackage = JSON.parse(
+    fs.readFileSync(path.join(__dirname, "../package.json"))
   );
+} catch (err) {
+  libPackage = {
+    name: "check-my-package-version",
+  };
 }
 
-https
-  .get(versionURL, (resp) => {
-    let data = "";
+const program = new Command();
 
-    resp.on("data", (chunk) => {
-      data += chunk;
-    });
+program
+  .version(libPackage.version)
+  .name(libPackage.name)
+  .requiredOption("-o, --org <name>", "organization name")
+  .requiredOption("-p, --project <name>", "project name")
+  .option("-b, --branch <name>", "branch name", "main");
 
-    resp.on("end", () => {
-      if (data.startsWith("404")) {
-        throwProcessError(`Version not found in ${versionURL}`);
-      }
+program.parse();
 
-      const masterVersion = JSON.parse(data).version;
-      compareVersions(masterVersion, currentVersion);
-    });
-  })
-  .on("error", (err) => {
-    throwProcessError(err.message);
-  });
+command.checkVersion(program.opts());
