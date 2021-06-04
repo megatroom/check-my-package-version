@@ -44,7 +44,7 @@ jobs:
       - *current_workspace
       - run:
           name: Publish canary version
-          command: yarn auto canary
+          command: yarn auto canary --target comment
   publish-latest:
     docker: *circleci_node
     steps:
