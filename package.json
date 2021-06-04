@@ -23,7 +23,6 @@
       "first-time-contributor",
       "released"
     ],
-    "onlyPublishWithReleaseLabel": true,
     "labels": [
       {
         "name": "version:major",
