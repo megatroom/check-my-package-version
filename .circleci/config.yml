@@ -37,44 +37,14 @@ jobs:
       - run:
           name: Auto check PR
           command: yarn auto pr-check --url $CIRCLE_BUILD_URL
-  publish-canary:
+  publish:
     docker: *circleci_node
     steps:
       - checkout
       - *current_workspace
       - run:
-          name: Publish canary version
-          command: yarn auto canary
-  publish-next:
-    docker: *circleci_node
-    steps:
-      - checkout
-      - *current_workspace
-      - run:
-          name: Set git user data
-          command: |
-            git config user.email ${GIT_EMAIL} && \
-            git config user.name ${GIT_USERNAME}
-      - run:
-          name: Authenticate with NPM
-          command: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc
-      - run:
-          name: Bump version
-          command: npm version prerelease --preid next -m "[skip ci] Bump version to %s"
-      - run:
-          name: Publish next version
-          command: npm publish --tag next
-      - run:
-          name: Push commit and tag
-          command: git push --follow-tags -q https://${GH_TOKEN}@github.com/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}.git ${CIRCLE_BRANCH}
-  publish-latest:
-    docker: *circleci_node
-    steps:
-      - checkout
-      - *current_workspace
-      - run:
-          name: Publish latest version
-          command: yarn auto latest
+          name: Publish version
+          command: yarn auto shipit
 
 workflows:
   build-test-deploy:
@@ -85,27 +55,10 @@ workflows:
             branches:
               ignore:
                 - main
-                - latest
+                - next
           requires:
             - build-and-test
-      - publish-canary:
-          filters:
-            branches:
-              ignore:
-                - main
-                - latest
+      - publish:
           requires:
             - build-and-test
             - check-pr
-      - publish-next:
-          filters:
-            branches:
-              only: main
-          requires:
-            - build-and-test
-      - publish-latest:
-          filters:
-            branches:
-              only: latest
-          requires:
-            - build-and-test
