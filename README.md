@@ -1,5 +1,6 @@
 # Check My Package Version
 
+![npm (tag)](https://img.shields.io/npm/v/check-my-package-version/latest?label=npm)
 [![megatroom](https://circleci.com/gh/megatroom/check-my-package-version.svg?style=svg)](https://circleci.com/gh/megatroom/check-my-package-version)
 
 Script to check package version against branches
