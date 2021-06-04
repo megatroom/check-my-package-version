@@ -20,7 +20,8 @@
   "auto": {
     "plugins": [
       "npm",
-      "first-time-contributor"
+      "first-time-contributor",
+      "released"
     ],
     "labels": [
       {
@@ -84,6 +85,13 @@
         "description": "Preserve the current version",
         "releaseType": "skip",
         "color": "#bf5416",
+        "overwrite": true
+      },
+      {
+        "name": "version:release",
+        "description": "Create a release when this pr is merged",
+        "releaseType": "release",
+        "color": "#007f70",
         "overwrite": true
       }
     ]
