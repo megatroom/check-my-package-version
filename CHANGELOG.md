@@ -1,3 +1,15 @@
+# v1.1.1 (Sat Jun 05 2021)
+
+#### 🐛 Bug Fix
+
+- Fix bin config [#11](https://github.com/megatroom/check-my-package-version/pull/11) ([@megatroom](https://github.com/megatroom))
+
+#### Authors: 1
+
+- Bruno Nardini ([@megatroom](https://github.com/megatroom))
+
+---
+
 # v1.1.0 (Fri Jun 04 2021)
 
 #### 🚀 Enhancement
