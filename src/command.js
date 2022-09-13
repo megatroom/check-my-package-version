@@ -2,21 +2,21 @@ const https = require("https");
 const fs = require("fs");
 
 function throwProcessError(message) {
-  console.error("Error: " + message);
+  console.error("\nError: " + message + "\n");
   process.exit(1);
 }
 
-function getVersionURL({ org, project, branch }) {
-  return `https://raw.githubusercontent.com/${org}/${project}/${branch}/package.json`;
+function getVersionURL({ org, project, branch, file }) {
+  return `https://raw.githubusercontent.com/${org}/${project}/${branch}/${file}`;
 }
 
-function getCurrentVersion() {
+function getCurrentVersion(filePath) {
   try {
-    const currentPackage = fs.readFileSync("./package.json");
+    const currentPackage = fs.readFileSync(`./${filePath}`);
     return JSON.parse(currentPackage).version;
   } catch (err) {
     throwProcessError(
-      "Unable to find package.json. You must run in the project root dir."
+      "Unable to find local package.json file. You must run in the project root dir."
     );
   }
 }
@@ -36,7 +36,7 @@ function compareVersions(options, orig, curr) {
         `Current version (${curr}) is smaller than the version of ${branch} (${orig}).`
       );
     } else if (version2[i] > version1[i]) {
-      console.log(`Version checked: ${curr}`);
+      console.log(`\nVersion checked: ${curr}\n`);
       return true;
     }
   }
@@ -63,7 +63,7 @@ const checkVersion = (options) => {
         }
 
         const masterVersion = JSON.parse(data).version;
-        const currentVersion = getCurrentVersion();
+        const currentVersion = getCurrentVersion(options.file);
 
         compareVersions(options, masterVersion, currentVersion);
       });

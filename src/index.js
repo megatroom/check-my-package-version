@@ -21,6 +21,7 @@ program
   .name(libPackage.name)
   .requiredOption("-o, --org <name>", "organization name")
   .requiredOption("-p, --project <name>", "project name")
+  .option("-f, --file <path>", "package.json file path", "package.json")
   .option("-b, --branch <name>", "branch name", "main");
 
 program.parse();
