@@ -2,11 +2,11 @@ version: 2.1
 
 orbs:
   # See the orb documentation here: https://circleci.com/developer/orbs/orb/circleci/node
-  node: circleci/node@4.1
+  node: circleci/node@5.0.2
 
 aliases:
   - &circleci_node
-    - image: cimg/node:15.1
+    - image: cimg/node:16.17.0
 
   - &current_workspace
     attach_workspace: { at: "." }
