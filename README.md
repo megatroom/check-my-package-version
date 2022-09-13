@@ -26,6 +26,7 @@ Options:
   -V, --version         output the version number
   -o, --org <name>      organization name
   -p, --project <name>  project name
+  -f, --file <path>     package.json file path (default: "package.json")
   -b, --branch <name>   branch name (default: "main")
   -h, --help            display help for command
 ```
@@ -34,6 +35,14 @@ Example using `https://github.com/facebook/react/`:
 
 ```bash
 npx check-my-package-version -o facebook -p react
+```
+
+### Monorepo
+
+If you are using a monorepo, you can use the `--file` option to specify the path to the `package.json` file:
+
+```bash
+npx check-my-package-version -o babel -p babel --file packages/babel-core/package.json
 ```
 
 ## Installation
