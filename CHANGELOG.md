@@ -1,3 +1,15 @@
+# v1.2.0 (Tue Sep 13 2022)
+
+#### 🚀 Enhancement
+
+- Add monorepo support [#12](https://github.com/megatroom/check-my-package-version/pull/12) (bruno.nardini@pipefy.com)
+
+#### Authors: 1
+
+- Bruno Nardini ([@megatroom](https://github.com/megatroom))
+
+---
+
 # v1.1.1 (Sat Jun 05 2021)
 
 #### 🐛 Bug Fix
